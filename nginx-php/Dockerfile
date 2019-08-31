@@ -16,7 +16,7 @@ RUN apt-get update  && \
     apt-get install -y unzip && \
     wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.0.0-linux-x86_64.tar.gz && \
     tar -zxvf filebeat-7.0.0-linux-x86_64.tar.gz && \
-    mv filebeat-7.0.0-linux-x86_64 /user/local/filebeat && \
+    mv filebeat-7.0.0-linux-x86_64 /usr/local/filebeat && \
     rm -rf filebeat-7.0.0-linux-x86_64 && \
     apt-get clean && \
     apt-get autoclean
@@ -30,6 +30,9 @@ RUN rm -Rf /etc/nginx/nginx.conf && \
     rm -Rf /etc/nginx/enable-available/default && \
     mkdir -p /run/php && \
     chmod 755 /var/opt/bin/start.sh
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo 'Asia/Shanghai' > /etc/timezone
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
