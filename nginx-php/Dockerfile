@@ -1,11 +1,11 @@
-FROM ubuntu:17.10
+FROM ubuntu:16.04
 
 MAINTAINER  huanhuan <1152018701@qq.com>
 
 RUN apt-get update  && \
     apt-get install -y nginx supervisor && \
-    apt-get install -y dialog apt-utils pkg-config wget curl cron && \
-    apt-get install -y php7.1-fpm php7.1-cli && \
+    apt-get install -y dialog apt-utils pkg-config wget curl cron vim && \
+    apt-get install -y php7-fpm php7-cli && \
     apt-get install -y php7.1-curl && \
     apt-get install -y php7.1-mbstring && \
     apt-get install -y php7.1-dev && \
@@ -17,9 +17,7 @@ RUN apt-get update  && \
     wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.0.0-linux-x86_64.tar.gz && \
     tar -zxvf filebeat-7.0.0-linux-x86_64.tar.gz && \
     mv filebeat-7.0.0-linux-x86_64 /usr/local/filebeat && \
-    rm -rf filebeat-7.0.0-linux-x86_64 && \
-    apt-get clean && \
-    apt-get autoclean
+    rm -rf filebeat-7.0.0-linux-x86_64
 
 COPY scripts/ /var/opt/bin/
 
